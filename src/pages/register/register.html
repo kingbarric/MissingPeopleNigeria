@@ -1,0 +1,116 @@
+<!-- -->
+<ion-content class="auth-page">
+  <div class="register-content">
+
+    <!-- Logo -->
+    <div padding text-center>
+      <div class="logo"></div>
+      <h2 ion-text class="text-primary">
+        <strong>Missing People</strong> App
+      </h2>
+    </div>
+
+    <!-- Login form -->
+    <form class="list-form">
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="firstname" item-start class="text-primary"></ion-icon>
+          First Name
+        </ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="othernames" item-start class="text-primary"></ion-icon>
+          Other name
+        </ion-label>
+        <ion-input type="te"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lastname" item-start class="text-primary"></ion-icon>
+          Last name
+        </ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="email" item-start class="text-primary"></ion-icon>
+          Email
+        </ion-label>
+        <ion-input type="email"></ion-input>
+      </ion-item>
+     
+      <ion-item>
+        <ion-label>State</ion-label>
+        
+        <ion-select  name="stateId" multiple="" >
+          <ion-option value="" >Please choose</ion-option>
+          
+        </ion-select>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label>LGA</ion-label>
+        <ion-select  multiple="" >
+          <ion-option value="" ></ion-option>
+          
+        </ion-select>
+      </ion-item>
+
+    
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="address" item-start class="text-primary"></ion-icon>
+          Address
+        </ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="nin" item-start class="text-primary"></ion-icon>
+          NIN
+        </ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="calender" item-start class="text-primary"></ion-icon>
+          Date of birth
+        </ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Password
+        </ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+      <button ion-button block color="dark" tappable (click)="register()">
+        SIGN UP
+      </button>
+    </form>
+
+    <div margin-top>
+      
+
+      <p text-center ion-text color="secondary"></p>
+
+    
+    </div>
+
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span ion-text color="primary" tappable (click)="login()">I have an account</span>
+    </div>
+
+  </div>
+</ion-content>
