@@ -25,11 +25,16 @@ import {TripDetailPage} from "../pages/trip-detail/trip-detail";
 import {TripsPage} from "../pages/trips/trips";
 import {LocalWeatherPage} from "../pages/local-weather/local-weather";
 import { PagesServicesCrudServiceProvider } from '../providers/pages-services-crud-service/pages-services-crud-service';
+import {PrivateMessagePage} from "../pages/private-message/private-message";
+import {SearchPeoplePage} from "../pages/search-people/search-people";
+import {SearchByPhotoPage} from "../pages/search-by-photo/search-by-photo";
+import {AboutPage} from "../pages/about/about"; 
+import {HelpPage} from "../pages/help/help";
+import {PostDetailsPage} from "../pages/post-details/post-details";
 
 // import services
 // end import services
 // end import services
-
 // import pages
 // end import pages
 
@@ -40,6 +45,12 @@ import { PagesServicesCrudServiceProvider } from '../providers/pages-services-cr
     CheckoutTripPage,
     HomePage,
     LoginPage,
+    PrivateMessagePage,
+    SearchPeoplePage,
+    SearchByPhotoPage,
+    AboutPage,
+    HelpPage,
+    PostDetailsPage,
     LocalWeatherPage,
     NotificationsPage,
     RegisterPage,
@@ -67,6 +78,12 @@ import { PagesServicesCrudServiceProvider } from '../providers/pages-services-cr
     CheckoutTripPage,
     HomePage,
     LoginPage,
+    PrivateMessagePage,
+    SearchPeoplePage,
+    SearchByPhotoPage,
+    AboutPage,
+    HelpPage,
+    PostDetailsPage,
     LocalWeatherPage,
     NotificationsPage,
     RegisterPage,

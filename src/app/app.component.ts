@@ -7,7 +7,11 @@ import { Keyboard } from '@ionic-native/keyboard';
 
 import { HomePage } from "../pages/home/home";
 import { LoginPage } from "../pages/login/login";
-import { LocalWeatherPage } from "../pages/local-weather/local-weather";
+import { SearchPeoplePage } from "../pages/search-people/search-people";
+import { SearchByPhotoPage } from "../pages/search-by-photo/search-by-photo";
+import { PrivateMessagePage } from "../pages/private-message/private-message";
+import { AboutPage } from "../pages/about/about";
+import { HelpPage } from "../pages/help/help";
 
 export interface MenuItem {
     title: string;
@@ -36,7 +40,11 @@ export class MyApp {
 
     this.appMenuItems = [
       {title: 'Home', component: HomePage, icon: 'home'},
-      {title: 'Search For People', component: LocalWeatherPage, icon: 'partly-sunny'}
+      {title: 'Search People', component: SearchPeoplePage, icon: 'contact'},
+      {title: 'Search People By Photo', component: SearchByPhotoPage, icon: 'photos'},
+      {title: 'Private Message', component: PrivateMessagePage, icon: 'logo-twitch'},
+      {title: 'About', component: AboutPage, icon: 'information'},
+      {title: 'Help', component: HelpPage, icon: 'sunny'}
     ];
   }
 
