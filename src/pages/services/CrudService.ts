@@ -22,7 +22,8 @@ export class CrudService {
 
   headerAuth = new HttpHeaders(
     {
-      'Authorization': btoa(unescape(encodeURIComponent(localStorage.getItem('token'))))
+    
+      'Authorization': localStorage.getItem('token')
     }
   );
 
