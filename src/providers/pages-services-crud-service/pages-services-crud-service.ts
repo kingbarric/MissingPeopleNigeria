@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 export class PagesServicesCrudServiceProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello PagesServicesCrudServiceProvider Provider');
+    console.log('/oh');
   }
 
 }
