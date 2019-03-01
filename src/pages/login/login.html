@@ -11,13 +11,13 @@
     </div>
 
     <!-- Login form -->
-    <form class="list-form">
+    <form class="list-form" [formGroup]="form" (ngSubmit)="login()">
       <ion-item>
         <ion-label floating>
           <ion-icon name="phone" item-start class="text-primary"></ion-icon>
-          Phone
+          Email
         </ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input type="email" formControlName="email"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -25,14 +25,14 @@
           <ion-icon name="lock" item-start class="text-primary"></ion-icon>
           Password
         </ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
-    </form>
+   
 
     <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Forgot Password?</strong></p>
 
     <div>
-      <button ion-button icon-start block color="dark" tappable (click)="login()">
+      <button ion-button icon-start block color="dark" tappable >
         <ion-icon name="log-in"></ion-icon>
         SIGN IN
       </button>
@@ -60,7 +60,7 @@
       </ion-grid> -->
 
     </div>
-
+  </form>
 
     <!-- Other links -->
     <div text-center margin-top>

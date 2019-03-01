@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient, HttpEventType, } from '@angular/common/http';
 import { Headers, RequestOptions } from '@angular/http';
+import { ToastController, Toast } from 'ionic-angular';
 @Injectable()
 export class CrudService {
   SERVICE_URL;
@@ -52,11 +53,18 @@ export class CrudService {
     return token != null;
   }
 
-  constructor(private http: HttpClient) {
-    this.REST_API_URL = 'http://localhost:8080/NexarsSecurity/';
+  constructor(private http: HttpClient,public toastController: ToastController) {
+    this.REST_API_URL = 'http://localhost:8080/api/';
     this.emp_msg = { message: 'No data available' };
   }
 
+  async toast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 4000
+    });
+    toast.present();
+  }
 
   /**
    * 
@@ -205,5 +213,7 @@ export class CrudService {
         });
     });
   }
+
+  
 
 }

@@ -11,43 +11,44 @@
     </div>
 
     <!-- Login form -->
-    <form class="list-form">
+    <form class="list-form" [formGroup]="form" (ngSubmit)="register()">
       <ion-item>
         <ion-label floating>
           <ion-icon name="firstname" item-start class="text-primary"></ion-icon>
           First Name
         </ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" formControlName="firstname" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>
-          <ion-icon name="othernames" item-start class="text-primary"></ion-icon>
+          <ion-icon name="othernames"  item-start class="text-primary"></ion-icon>
           Other name
         </ion-label>
-        <ion-input type="te"></ion-input>
+        <ion-input type="text" formControlName="othernames"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>
-          <ion-icon name="lastname" item-start class="text-primary"></ion-icon>
+          <ion-icon name="lastname"  item-start class="text-primary"></ion-icon>
           Last name
         </ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" formControlName="lastname"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>
-          <ion-icon name="email" item-start class="text-primary"></ion-icon>
+          <ion-icon name="email"  item-start class="text-primary"></ion-icon>
           Email
         </ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input type="email" formControlName="email"></ion-input>
       </ion-item>
      
       <ion-item>
         <ion-label>State</ion-label>
         
-        <ion-select  name="stateId" multiple="" >
-          <ion-option value="" >Please choose</ion-option>
+        <ion-select  name="stateId" formControlName="stateId"  >
+
+          <ion-option *ngFor="let state of states" #st [value]="state.stateId" (ionSelect)="changeLga($event, state)" >{{state.name}}</ion-option>
           
         </ion-select>
       </ion-item>
@@ -55,8 +56,9 @@
 
       <ion-item>
         <ion-label>LGA</ion-label>
-        <ion-select  multiple="" >
-          <ion-option value="" ></ion-option>
+        <ion-select   formControlName="lgaId" >
+            <ion-option *ngFor="let lga of lgas"  [value]="lga.id">{{lga.name}}</ion-option>
+          
           
         </ion-select>
       </ion-item>
@@ -68,14 +70,14 @@
           <ion-icon name="address" item-start class="text-primary"></ion-icon>
           Address
         </ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" formControlName="address"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>
-          <ion-icon name="nin" item-start class="text-primary"></ion-icon>
+          <ion-icon name="nin" item-start  class="text-primary"></ion-icon>
           NIN
         </ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" formControlName="nin"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -83,7 +85,7 @@
           <ion-icon name="calender" item-start class="text-primary"></ion-icon>
           Date of birth
         </ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="Date" formControlName="dateOfBirth"></ion-input>
       </ion-item>
       
 
@@ -92,9 +94,9 @@
           <ion-icon name="lock" item-start class="text-primary"></ion-icon>
           Password
         </ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
-      <button ion-button block color="dark" tappable (click)="register()">
+      <button ion-button block color="dark" tappable >
         SIGN UP
       </button>
     </form>

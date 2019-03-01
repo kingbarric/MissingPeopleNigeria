@@ -11,6 +11,8 @@ import {Keyboard} from '@ionic-native/keyboard';
 import {ActivityService} from "../services/activity-service";
 import {TripService} from "../services/trip-service";
 import {WeatherProvider} from "../services/weather";
+import {CrudService} from "../services/CrudService";
+
 
 import {MyApp} from "./app.component";
 
@@ -31,6 +33,7 @@ import {SearchByPhotoPage} from "../pages/search-by-photo/search-by-photo";
 import {AboutPage} from "../pages/about/about"; 
 import {HelpPage} from "../pages/help/help";
 import {PostDetailsPage} from "../pages/post-details/post-details";
+import {FormsModule } from '@angular/forms';
 
 // import services
 // end import services
@@ -61,6 +64,7 @@ import {PostDetailsPage} from "../pages/post-details/post-details";
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     IonicModule.forRoot(MyApp, {
       scrollPadding: false,
       scrollAssist: true,
@@ -97,6 +101,7 @@ import {PostDetailsPage} from "../pages/post-details/post-details";
     Keyboard,
     ActivityService,
     TripService,
+    CrudService,
     WeatherProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     PagesServicesCrudServiceProvider

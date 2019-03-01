@@ -2,15 +2,25 @@ import {Component} from "@angular/core";
 import {NavController, AlertController, ToastController, MenuController} from "ionic-angular";
 import {HomePage} from "../home/home";
 import {RegisterPage} from "../register/register";
+import { CrudService } from "../../services/CrudService";
+import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
+  form;
 
-  constructor(public nav: NavController, public forgotCtrl: AlertController, public menu: MenuController, public toastCtrl: ToastController) {
+  constructor(public nav: NavController, public forgotCtrl: AlertController, private storage :Storage,
+     public menu: MenuController, public toastCtrl: ToastController, private crudService: CrudService) {
     this.menu.swipeEnable(false);
+
+    this.form = new FormGroup({
+      email: new FormControl('',[Validators.required]),
+      password: new FormControl('',[Validators.required]),
+    });
   }
 
   // go to register page
@@ -20,7 +30,21 @@ export class LoginPage {
 
   // login and go to home page
   login() {
-    this.nav.setRoot(HomePage);
+   // 
+   this.nav.setRoot(HomePage);
+   this.crudService.saveData('citizens/login',this.form.value,0)
+   .subscribe((e:any)=>{
+     console.log(e);
+     if(e.code !=0){
+       this.crudService.toast('Invalid username or password');
+       this.storage.set("uid",e.id);
+       this.storage.set("email",e.email);
+       
+       
+     }else{
+      this.nav.setRoot(HomePage);
+     }
+   })
   }
 
   forgotPass() {
@@ -46,7 +70,7 @@ export class LoginPage {
           handler: data => {
             console.log('Send clicked');
             let toast = this.toastCtrl.create({
-              message: 'Email was sended successfully',
+              message: 'Email was sent successfully',
               duration: 3000,
               position: 'top',
               cssClass: 'dark-trans',
