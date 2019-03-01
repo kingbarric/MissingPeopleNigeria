@@ -34,6 +34,7 @@ import {AboutPage} from "../pages/about/about";
 import {HelpPage} from "../pages/help/help";
 import {PostDetailsPage} from "../pages/post-details/post-details";
 import {FormsModule } from '@angular/forms';
+import {ReportPersonPage} from "../pages/report-person/report-person";
 
 // import services
 // end import services
@@ -93,7 +94,8 @@ import {FormsModule } from '@angular/forms';
     RegisterPage,
     SearchLocationPage,
     TripDetailPage,
-    TripsPage
+    TripsPage,
+    ReportPersonPage
   ],
   providers: [
     StatusBar,

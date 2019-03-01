@@ -7,6 +7,7 @@ import {SettingsPage} from "../settings/settings";
 import {TripsPage} from "../trips/trips";
 import {SearchLocationPage} from "../search-location/search-location";
 import { CrudService } from "../../services/CrudService";
+import {ReportPersonPage} from "../report-person/report-person";
 
 
 @Component({
@@ -16,6 +17,7 @@ import { CrudService } from "../../services/CrudService";
 
 export class HomePage {
   // search condition
+  public reportPage = ReportPersonPage;
   public search = {
     name: "Rio de Janeiro, Brazil",
     date: new Date().toISOString()
@@ -28,13 +30,10 @@ export class HomePage {
   ionViewWillEnter() {
     // this.search.pickup = "Rio de Janeiro, Brazil";
     // this.search.dropOff = "Same as pickup";
-    this.storage.get('email').then((val) => {
+    this.storage.get('pickup').then((val) => {
+      console.log('bra',val)
       if (val === null) {
-        console.log(val);
-        this.crudService.getAll('citizens/byemail/'+val)
-    .subscribe((e:any)=>{
-      console.log(e);
-    });
+        this.search.name = "Rio de Janeiro, Brazil"
       } else {
         this.search.name = val;
       }
@@ -42,7 +41,14 @@ export class HomePage {
       console.log(err)
     });
 
-   
+    this.storage.get('email').then((e) => {
+      console.log('Your age is', e);
+    });
+
+    this.crudService.getAll('citizens/byemail/'+localStorage.getItem('email'))
+    .subscribe((e:any)=>{
+      console.log(e);
+    })
   }
 
   // go to result page
@@ -68,7 +74,7 @@ export class HomePage {
     });
   }
   postMissing(){
-    console.log('call')
+    this.nav.setRoot(ReportPersonPage);
   }
 }
 

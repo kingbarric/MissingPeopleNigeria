@@ -16,5 +16,47 @@
 
 
 <ion-content padding>
+    <div padding-horizontal text-center class="animated fadeInDown">
+        <!-- <div class="logo"></div> -->
+        <h2 ion-text class="text-primary">
+          <strong>Report a missing</strong> Person
+        </h2>
+      </div>
+  
+      <!-- Login form -->
+      <form class="list-form" [formGroup]="form" (ngSubmit)="report()">
+        <ion-item>
+          <ion-label floating>
+            <ion-icon name="caption" item-start class="text-primary"></ion-icon>
+           Caption
+          </ion-label>
+          <ion-input type="text" formControlName="caption"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label floating>
+            <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+            Describe the person
+          </ion-label>
+          <ion-textarea formControlName="message"></ion-textarea>
+        </ion-item>
+     
+  
+      <div>
+        <button ion-button icon-start block color="dark" tappable >
+          <ion-icon name="log-in"></ion-icon>
+          Post
+        </button>
+  
+     
+  
+      </div>
+    </form>
+  
+      <!-- Other links -->
+      <div text-center margin-top>
+        <span ion-text color="secondary" tappable (click)="cancel()">Cancel<strong></strong></span>
+      </div>
+  
 
 </ion-content>
