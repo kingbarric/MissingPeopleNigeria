@@ -8,6 +8,7 @@ import {TripsPage} from "../trips/trips";
 import {SearchLocationPage} from "../search-location/search-location";
 import { CrudService } from "../../services/CrudService";
 import {ReportPersonPage} from "../report-person/report-person";
+import { PostDetailsPage } from "../post-details/post-details";
 
 
 @Component({
@@ -18,6 +19,7 @@ import {ReportPersonPage} from "../report-person/report-person";
 export class HomePage {
   // search condition
   public reportPage = ReportPersonPage;
+  reports;
   public search = {
     name: "Rio de Janeiro, Brazil",
     date: new Date().toISOString()
@@ -49,6 +51,12 @@ export class HomePage {
     .subscribe((e:any)=>{
       console.log(e);
     })
+
+    this.crudService.getAll('reports/all')
+    .subscribe((e:any)=>{
+      console.log(e);
+      this.reports = e;
+    })
   }
 
   // go to result page
@@ -74,7 +82,7 @@ export class HomePage {
     });
   }
   postMissing(){
-    this.nav.setRoot(ReportPersonPage);
+    this.nav.setRoot(PostDetailsPage);
   }
 }
 

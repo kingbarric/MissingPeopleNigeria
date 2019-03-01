@@ -34,7 +34,6 @@ import {AboutPage} from "../pages/about/about";
 import {HelpPage} from "../pages/help/help";
 import {PostDetailsPage} from "../pages/post-details/post-details";
 import {FormsModule } from '@angular/forms';
-import {ReportPersonPage} from "../pages/report-person/report-person";
 
 // import services
 // end import services
@@ -94,8 +93,7 @@ import {ReportPersonPage} from "../pages/report-person/report-person";
     RegisterPage,
     SearchLocationPage,
     TripDetailPage,
-    TripsPage,
-    ReportPersonPage
+    TripsPage
   ],
   providers: [
     StatusBar,
