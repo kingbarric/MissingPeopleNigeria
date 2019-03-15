@@ -10,16 +10,16 @@
               </div>
           </ion-col>
           <ion-col padding-top col-8>
-            <h2 ion-text class="no-margin bold text-white">
-              Titus
+            <h2 ion-text class="no-margin bold text-white" *ngIf="citizen !=null">
+           {{citizen.firstname}} {{citizen.lastname}}
             </h2>
-            <span ion-text color="light">Citizen</span>
+            <span ion-text color="light" *ngIf="citizen !=null">{{citizen.email}}</span>
           </ion-col>
         </ion-row>
 
         <ion-row no-padding class="other-data">
           <ion-col no-padding class="column">
-            <button ion-button icon-left small full color="light" menuClose >
+            <button ion-button icon-left small full color="light" menuClose (click)="editProfile()" >
               <ion-icon name="contact"></ion-icon>
               Edit Profile
             </button>

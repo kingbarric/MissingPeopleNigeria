@@ -6,12 +6,18 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import {File} from '@ionic-native/file';
+import {FileChooser} from  '@ionic-native/file-chooser';
+import {Camera} from '@ionic-native/camera';
 import {Keyboard} from '@ionic-native/keyboard';
 
 import {ActivityService} from "../services/activity-service";
 import {TripService} from "../services/trip-service";
 import {WeatherProvider} from "../services/weather";
 import {CrudService} from "../services/CrudService";
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+
+
 
 
 import {MyApp} from "./app.component";
@@ -32,6 +38,7 @@ import {SearchPeoplePage} from "../pages/search-people/search-people";
 import {SearchByPhotoPage} from "../pages/search-by-photo/search-by-photo";
 import {AboutPage} from "../pages/about/about"; 
 import {HelpPage} from "../pages/help/help";
+import { ProfilePage } from "../pages/profile/profile";
 import {PostDetailsPage} from "../pages/post-details/post-details";
 import {FormsModule } from '@angular/forms';
 
@@ -59,7 +66,8 @@ import {FormsModule } from '@angular/forms';
     RegisterPage,
     SearchLocationPage,
     TripDetailPage,
-    TripsPage
+    TripsPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -72,7 +80,7 @@ import {FormsModule } from '@angular/forms';
     }),
     IonicStorageModule.forRoot({
       name: '__ionic3_start_theme',
-        driverOrder: ['indexeddb', 'sqlite', 'websql']
+        driverOrder: ['sqlite','indexeddb',  'websql']
     })
   ],
   bootstrap: [IonicApp],
@@ -93,7 +101,8 @@ import {FormsModule } from '@angular/forms';
     RegisterPage,
     SearchLocationPage,
     TripDetailPage,
-    TripsPage
+    TripsPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,
@@ -104,7 +113,11 @@ import {FormsModule } from '@angular/forms';
     CrudService,
     WeatherProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    PagesServicesCrudServiceProvider
+    PagesServicesCrudServiceProvider,
+   
+    FileTransferObject,
+   
+   
   ]
 })
 

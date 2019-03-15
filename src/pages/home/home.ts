@@ -21,7 +21,7 @@ export class HomePage {
   public reportPage = ReportPersonPage;
   reports;
   public search = {
-    name: "Rio de Janeiro, Brazil",
+    name: "person search",
     date: new Date().toISOString()
   }
 
@@ -30,12 +30,11 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
-    // this.search.pickup = "Rio de Janeiro, Brazil";
-    // this.search.dropOff = "Same as pickup";
+    
     this.storage.get('pickup').then((val) => {
       console.log('bra',val)
       if (val === null) {
-        this.search.name = "Rio de Janeiro, Brazil"
+        this.search.name = "citizen"
       } else {
         this.search.name = val;
       }
@@ -47,10 +46,7 @@ export class HomePage {
       console.log('Your age is', e);
     });
 
-    this.crudService.getAll('citizens/byemail/'+localStorage.getItem('email'))
-    .subscribe((e:any)=>{
-      console.log(e);
-    })
+   
 
     this.crudService.getAll('reports/all')
     .subscribe((e:any)=>{

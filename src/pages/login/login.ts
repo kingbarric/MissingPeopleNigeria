@@ -5,6 +5,7 @@ import {RegisterPage} from "../register/register";
 import { CrudService } from "../../services/CrudService";
 import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Storage } from "@ionic/storage";
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-login',
@@ -15,7 +16,7 @@ export class LoginPage {
 
   constructor(public nav: NavController, public forgotCtrl: AlertController,
      public menu: MenuController, public toastCtrl: ToastController, private crudService: CrudService
-     ,private storage : Storage) {
+     ,private storage : Storage, public event :Events) {
     this.menu.swipeEnable(false);
 
     this.form = new FormGroup({
@@ -39,7 +40,9 @@ export class LoginPage {
      if(e.code !=0){
        this.crudService.toast('Invalid username or password');
      }else{
-      this.storage.set('email',e.email);
+      this.storage.set('email',e.citizen.email);
+      this.event.publish('user:loggedin', e.citizen, Date.now());
+      this.storage.set('citizen', JSON.stringify(e.citizen));
       this.nav.setRoot(HomePage);
      
 
