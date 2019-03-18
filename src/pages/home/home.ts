@@ -11,6 +11,9 @@ import {ReportPersonPage} from "../report-person/report-person";
 import { PostDetailsPage } from "../post-details/post-details";
 
 
+import { DomSanitizer } from '@angular/platform-browser';
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -26,7 +29,7 @@ export class HomePage {
   }
 
   constructor(private storage: Storage, public nav: NavController, public popoverCtrl: PopoverController, 
-    private crudService: CrudService) {
+    private crudService: CrudService,  public sanitizer: DomSanitizer) {
   }
 
   ionViewWillEnter() {
@@ -48,10 +51,11 @@ export class HomePage {
 
    
 
-    this.crudService.getAll('reports/all')
+    this.crudService.getAll('reports/allpost')
     .subscribe((e:any)=>{
       console.log(e);
       this.reports = e;
+
     })
   }
 

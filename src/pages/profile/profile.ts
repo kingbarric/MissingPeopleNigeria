@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams , Platform} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { CrudService } from '../../services/CrudService';
 
 /**
  * Generated class for the ProfilePage page.
@@ -21,8 +22,10 @@ export class ProfilePage {
   email;
   address;
   img_url;
+  userId;
 
-  constructor(public navCtrl: NavController,private camera: Camera, public navParams: NavParams, private storage : Storage) {
+  constructor(public navCtrl: NavController,private camera: Camera, 
+    public navParams: NavParams, private storage : Storage, private platform: Platform,private crudService :CrudService) {
  this.callFromStorage();
   }
 
@@ -38,8 +41,17 @@ export class ProfilePage {
       this.name = this.citizen.firstname + " "+this.citizen.lastname;
       this.email = this.citizen.email;
       this.address = this.citizen.address;
+      this.userId = this.citizen.id;
+      this.getProfileImage(this.userId);
     });
   }
+
+getProfileImage(id){
+  this.crudService.getByID("citizens/profileimage",id)
+  .subscribe((d:any)=>{
+this.img_url = 'data:image/png;base64,'+ d.message;
+  })
+}
 
   ionViewWillEnter(){
 
@@ -60,13 +72,33 @@ export class ProfilePage {
         allowEdit:true
 
       }
-      const result = await this.camera.getPicture(options);
+    //  const result = await this.camera.getPicture(options);
 
-      const image = 'data:image/jpeg;base64,' + result;
-      this.img_url = image;
+     
+
+      this.platform.ready().then(() => {
+        if(this.platform.is('cordova')){
+          
+            this.camera.getPicture(options).then((imageData) => {
+                // imageData is either a base64 encoded string or a file URI
+                // If it's base64 (DATA_URL):
+                let base64Image = 'data:image/jpeg;base64,' + imageData;
+                console.log(base64Image); 
+                const image = 'data:image/jpeg;base64,' + imageData;
+                this.img_url = image;
+                this.saveImage(imageData);
+
+            }, (err) => {
+                // Handle error
+                this.crudService.toast("Error : "+err);
+            });
+        }
+    })
        
 
-    } catch (e) { console.error(e) }
+    } catch (e) { console.error(e);
+    this.crudService.toast("Error : "+e);
+    }
   }
 
 
@@ -82,13 +114,50 @@ export class ProfilePage {
         sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
         allowEdit:true
       }
-      const result = await this.camera.getPicture(options);
+      // const result = await this.camera.getPicture(options);
 
-      const image = 'data:image/jpeg;base64,' + result;
-      this.img_url = image;
+      // const image = 'data:image/jpeg;base64,' + result;
+      // this.img_url = image;
      
+      this.platform.ready().then(() => {
+        if(this.platform.is('cordova')){
+          
+            this.camera.getPicture(options).then((imageData) => {
+                // imageData is either a base64 encoded string or a file URI
+                // If it's base64 (DATA_URL):
+                let base64Image = 'data:image/jpeg;base64,' + imageData;
+                console.log(base64Image); 
+                const image = 'data:image/jpeg;base64,' + imageData;
+                this.img_url = image;
+                this.saveImage(imageData);
+            }, (err) => {
+                // Handle error
+                this.crudService.toast("Error : "+err);
+            });
+        }
+    })
 
-    } catch (e) { console.error(e)
+    } catch (e) { console.error(e); this.crudService.toast("Error : "+e);
      }
+  }
+
+  saveImage(data){
+    let fd = new FormData();
+                // fd.append("file",data);
+                // fd.append("id",1+"");
+                const d = {
+                  file : data,
+                  id : this.userId
+                }
+                this.crudService.saveData('citizens/upload',d,0)
+                .subscribe((e:any)=>{
+                  
+                  console.log('data saved: ',e);
+                  if(e.code==0){
+                   this.crudService.toast(e.message); 
+                 }else{
+                   this.crudService.toast(e.message);
+                 }
+                })
   }
 }

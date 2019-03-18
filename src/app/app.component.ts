@@ -15,6 +15,7 @@ import { HelpPage } from "../pages/help/help";
 import { ProfilePage } from "../pages/profile/profile";
 import {PostDetailsPage} from '../pages/post-details/post-details';
 import {Storage} from '@ionic/storage';
+import { CrudService } from "../services/CrudService";
 
 export interface MenuItem {
     title: string;
@@ -34,6 +35,7 @@ export class MyApp {
   appMenuItems: Array<MenuItem>;
   fullname;
   citizen;
+  img_url='/assets/img/avatar.png';
 
   constructor(
     public platform: Platform,
@@ -41,7 +43,8 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public keyboard: Keyboard,
     private storage: Storage,
-    public event: Events
+    public event: Events,
+    private crudService: CrudService
   ) {
     this.initializeApp();
 
@@ -59,6 +62,7 @@ export class MyApp {
       // user and time are the same arguments passed in `events.publish(user, time)`
       console.log('Welcome', citizen, 'at', time);
       this.citizen = citizen;
+      this.getProfileImage(citizen.id);
     });
   }
 
@@ -66,11 +70,17 @@ export class MyApp {
     this.storage.get('citizen').then((e) => {
       console.log('citi', e);
       this.citizen = JSON.parse(e.citizen);
-      console.log(this.citizen);
+     // console.log(this.citizen);
+     
     });
    
   }
-
+  getProfileImage(id){
+    this.crudService.getByID("citizens/profileimage",id)
+    .subscribe((d:any)=>{
+  this.img_url ='data:image/png;base64,'+ d.message;
+    })
+  }
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

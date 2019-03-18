@@ -4,43 +4,43 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 
-import {StatusBar} from '@ionic-native/status-bar';
-import {SplashScreen} from '@ionic-native/splash-screen';
-import {File} from '@ionic-native/file';
-import {FileChooser} from  '@ionic-native/file-chooser';
-import {Camera} from '@ionic-native/camera';
-import {Keyboard} from '@ionic-native/keyboard';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { File } from '@ionic-native/file';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Keyboard } from '@ionic-native/keyboard';
 
-import {ActivityService} from "../services/activity-service";
-import {TripService} from "../services/trip-service";
-import {WeatherProvider} from "../services/weather";
-import {CrudService} from "../services/CrudService";
-import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
-
-
+import { ActivityService } from "../services/activity-service";
+import { TripService } from "../services/trip-service";
+import { WeatherProvider } from "../services/weather";
+import { CrudService } from "../services/CrudService";
+import { MomentModule } from 'ngx-moment';
 
 
-import {MyApp} from "./app.component";
 
-import {SettingsPage} from "../pages/settings/settings";
-import {CheckoutTripPage} from "../pages/checkout-trip/checkout-trip";
-import {HomePage} from "../pages/home/home";
-import {LoginPage} from "../pages/login/login";
-import {NotificationsPage} from "../pages/notifications/notifications";
-import {RegisterPage} from "../pages/register/register";
-import {SearchLocationPage} from "../pages/search-location/search-location";
-import {TripDetailPage} from "../pages/trip-detail/trip-detail";
-import {TripsPage} from "../pages/trips/trips";
-import {LocalWeatherPage} from "../pages/local-weather/local-weather";
+
+import { MyApp } from "./app.component";
+
+import { SettingsPage } from "../pages/settings/settings";
+import { CheckoutTripPage } from "../pages/checkout-trip/checkout-trip";
+import { HomePage } from "../pages/home/home";
+import { LoginPage } from "../pages/login/login";
+import { NotificationsPage } from "../pages/notifications/notifications";
+import { RegisterPage } from "../pages/register/register";
+import { SearchLocationPage } from "../pages/search-location/search-location";
+import { TripDetailPage } from "../pages/trip-detail/trip-detail";
+import { TripsPage } from "../pages/trips/trips";
+import { LocalWeatherPage } from "../pages/local-weather/local-weather";
 import { PagesServicesCrudServiceProvider } from '../providers/pages-services-crud-service/pages-services-crud-service';
-import {PrivateMessagePage} from "../pages/private-message/private-message";
-import {SearchPeoplePage} from "../pages/search-people/search-people";
-import {SearchByPhotoPage} from "../pages/search-by-photo/search-by-photo";
-import {AboutPage} from "../pages/about/about"; 
-import {HelpPage} from "../pages/help/help";
+import { PrivateMessagePage } from "../pages/private-message/private-message";
+import { SearchPeoplePage } from "../pages/search-people/search-people";
+import { SearchByPhotoPage } from "../pages/search-by-photo/search-by-photo";
+import { AboutPage } from "../pages/about/about";
+import { HelpPage } from "../pages/help/help";
 import { ProfilePage } from "../pages/profile/profile";
-import {PostDetailsPage} from "../pages/post-details/post-details";
-import {FormsModule } from '@angular/forms';
+import { PostDetailsPage } from "../pages/post-details/post-details";
+import { FormsModule } from '@angular/forms';
 
 // import services
 // end import services
@@ -73,6 +73,8 @@ import {FormsModule } from '@angular/forms';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    MomentModule,
+
     IonicModule.forRoot(MyApp, {
       scrollPadding: false,
       scrollAssist: true,
@@ -80,7 +82,7 @@ import {FormsModule } from '@angular/forms';
     }),
     IonicStorageModule.forRoot({
       name: '__ionic3_start_theme',
-        driverOrder: ['sqlite','indexeddb',  'websql']
+      driverOrder: ['sqlite', 'indexeddb', 'websql']
     })
   ],
   bootstrap: [IonicApp],
@@ -107,6 +109,7 @@ import {FormsModule } from '@angular/forms';
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     Keyboard,
     ActivityService,
     TripService,
@@ -114,10 +117,10 @@ import {FormsModule } from '@angular/forms';
     WeatherProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     PagesServicesCrudServiceProvider,
-   
-    FileTransferObject,
-   
-   
+
+
+
+
   ]
 })
 

@@ -26,12 +26,33 @@
           <div class="list card">
             <ion-item class="profile-item">
               <div class="profile-picture big-profile-picture">
-                <img src="">
+                <img src="{{img_url}}" *ngIf="img_url != null">
+                <img src="/assets/img/avatar.png" *ngIf="img_url==null">
               </div>
+              <ion-row>
+                  <ion-col>
+                      <button  (click)="takePhoto()" ion-button block color="dark" tappable >
+                          <ion-icon  name="camera"></ion-icon>
+                          </button>
+                    </ion-col>
+                    <ion-col align-self-center text-center>
+                        <button  (click)="browsePhoto()" ion-button block color="dark" tappable >
+                            <ion-icon  name="folder-open"></ion-icon>
+                            </button>
+                    </ion-col>
+                  </ion-row>
               <h2 class="profile-name dark">{{name}}</h2>
-              <!-- <h2 class="profile-name dark">{{name}} {{citizen.lastname}}</h2>
-              <div class="profile-info">{{citizen.email}}</div>
-              <div class="profile-info">{{citizen.address}}</div> -->
+              <div class="profile-info">{{email}}</div>
+              <div class="profile-info">{{address}}</div> 
+              <span>
+
+
+               
+
+              
+                 
+                
+              </span>
             </ion-item>
           </div>
        

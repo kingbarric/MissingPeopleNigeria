@@ -47,6 +47,8 @@ export class LoginPage {
      
 
      }
+   },err=>{
+     this.crudService.toast('Network issue, check IP')
    })
   }
 

@@ -24,7 +24,7 @@
         </div>
     
         <!-- Login form -->
-        <form class="list-form" [formGroup]="form" (ngSubmit)="report()">
+        <form class="list-form" [formGroup]="form" >
           <ion-item>
             <ion-label floating>
               <ion-icon name="caption" item-start class="text-primary"></ion-icon>
@@ -43,7 +43,21 @@
        
     
         <div>
-          <button ion-button icon-start block color="dark" tappable >
+            <img src="{{imageUrl}}" *ngIf="imageUrl != null">
+            <img src="/assets/img/avatar.png" *ngIf="imageUrl==null">
+             <ion-row>
+                  <ion-col>
+                      <button  (click)="takePhoto()" ion-button block color="dark" tappable >
+                          <ion-icon  name="camera"></ion-icon>
+                          </button>
+                    </ion-col>
+                    <ion-col align-self-center text-center>
+                        <button  (click)="browsePhoto()" ion-button block color="dark" tappable >
+                            <ion-icon  name="folder-open"></ion-icon>
+                            </button>
+                    </ion-col>
+                  </ion-row>
+          <button ion-button icon-start block color="dark" tappable (click)="report()" >
             <ion-icon name="log-in"></ion-icon>
             Report
           </button>
