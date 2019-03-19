@@ -15,10 +15,7 @@ import { ActivityService } from "../services/activity-service";
 import { TripService } from "../services/trip-service";
 import { WeatherProvider } from "../services/weather";
 import { CrudService } from "../services/CrudService";
-import { MomentModule } from 'ngx-moment';
-
-
-
+import { MomentModule } from 'ngx-moment'; 
 
 import { MyApp } from "./app.component";
 
