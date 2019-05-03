@@ -4,6 +4,7 @@ import {ACTIVITIES} from "./mock-activities";
 @Injectable()
 export class ActivityService {
   private activities: any;
+  private data:{};
 
   constructor() {
     this.activities = ACTIVITIES;
@@ -12,6 +13,12 @@ export class ActivityService {
   getAll() {
     return this.activities;
   }
+setPost(data){
+this.data = data;
+}
+getData(){
+  return this.data;
+}
 
   getItem(id) {
     for (var i = 0; i < this.activities.length; i++) {

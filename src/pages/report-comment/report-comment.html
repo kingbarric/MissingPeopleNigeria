@@ -1,0 +1,108 @@
+<!-- -->
+<ion-header>
+
+  <ion-navbar  color="primary">
+    <ion-title>
+      <span ion-text>{{ post.postTitle }}</span>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="common-bg">
+  <!--slides-->
+  <ion-slides class="to-top" pager>
+    <ion-slide >
+      <img src="data:image/png;base64,{{post.postImage}}"> 
+    </ion-slide>
+  </ion-slides>
+
+  <!--services-->
+  <ion-grid class="border-bottom dark-bg">
+    <ion-row>
+      <ion-col text-center>
+        <div class="text-sm">
+          <div>
+            <ion-icon name="time" class="text-white"></ion-icon>
+            <span ion-text color="light">{{ post.date }}</span>
+            <ion-icon name="person" margin-left class="text-white" ></ion-icon>
+            <span ion-text color="light"  >By: {{post.username}}</span>
+            <ion-icon name="list-box" margin-left class="text-white"  ></ion-icon>
+            <span ion-text color="light"  >{{post.comment}}</span>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--high light-->
+  <div class="border-bottom" padding>
+    <!-- <span ion-text color="dark" class="bold">Description</span> -->
+    <span ion-text color="primary">{{ post.content}}</span>
+  </div>
+
+  <!--booking form-->
+  <div class="booking-form card round" margin>
+    <div class="border-bottom" padding>
+      <h5>Have any comment?</h5>
+
+      <!--choose guest-->
+      <form class="list-form" [formGroup]="form" >
+        <ion-item>
+          <ion-label floating>
+            <ion-icon name="caption" item-start class="text-primary"></ion-icon>
+           comment
+          </ion-label>
+          <ion-input type="text" formControlName="caption"></ion-input>
+        </ion-item>
+        <div padding class="form-bottom">
+          <!--       <span ion-text color="dark" class="bold">{{ adults }} Adults</span> -->
+                <!--booking button-->
+                <button ion-button class="pull-right" color="secondary" tappable (click)="comment()">Comment
+                </button>
+                <div class="clear"></div>
+              </div>
+    </form>
+    </div>
+   
+  </div>
+
+  <!--description-->
+  <div class="border-bottom" padding>
+    <span ion-text color="primary" class="bold">Previous Comment</span>
+    <ul>
+      <li *ngFor="let c of comments">
+        
+        <ion-item>
+        <ion-row>
+        
+          <ion-col>
+         
+              <ion-avatar item-start>
+                <img src="{{c.personImage}}" onerror="this.src='assets/img/avatar.png'"> 
+                 
+                </ion-avatar>
+            
+             
+              <div>{{c.name}}</div>
+           
+          </ion-col>
+          <ion-col align-self-center text-center>
+            <ion-note>
+            {{c.comment}}
+            <p>
+            @  {{c.dateCreated}}
+            </p>
+            </ion-note>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+      </li>
+    </ul>
+    
+  </div>
+
+  <!--address-->
+ 
+</ion-content>

@@ -1,5 +1,5 @@
 <ion-menu side="left" id="authenticated" [content]="content">
-  <ion-header>
+  <ion-header *ngIf="isLoggedin">
     <ion-toolbar class="user-profile">
 
       <ion-grid>
@@ -36,14 +36,52 @@
 
     </ion-toolbar>
   </ion-header>
+  
 
   <ion-content color="primary">
-
+    
     <ion-list class="user-list">
-      <button ion-item menuClose class="text-1x" *ngFor="let menuItem of appMenuItems" (click)="openPage(menuItem)">
+        <!-- {title: 'Home', component: HomePage, icon: 'home'},
+        {title: 'Report Person', component: PostDetailsPage, icon: 'sunny'},
+        {title: 'Search People', component: SearchPeoplePage, icon: 'contact'},
+        {title: 'Search People By Photo', component: SearchByPhotoPage, icon: 'photos'},
+        {title: 'Private Message', component: PrivateMessagePage, icon: 'logo-twitch'},
+        {title: 'About', component: AboutPage, icon: 'information'},
+        {title: 'Help', component: HelpPage, icon: 'sunny'}
+         -->
+      <!-- <button ion-item menuClose class="text-1x" *ngFor="let menuItem of appMenuItems" (click)="openPage(menuItem)">
         <ion-icon item-left [name]="menuItem.icon" color="primary"></ion-icon>
         <span ion-text color="primary">{{menuItem.title}}</span>
-      </button>
+      </button> -->
+      <button ion-item menuClose class="text-1x"   (click)="openPage(appMenuItems[0].component)">
+          <ion-icon item-left [name]="appMenuItems[0].icon" color="primary"></ion-icon>
+          <span ion-text color="primary">{{appMenuItems[0].title}}</span>
+        </button>
+        <button [disabled]="!isLoggedin" ion-item menuClose class="text-1x"   (click)="openPage(appMenuItems[1].component)">
+            <ion-icon item-left [name]="appMenuItems[1].icon" color="primary"></ion-icon>
+            <span ion-text color="primary">{{appMenuItems[1].title}}</span>
+          </button>
+          <button [disabled]="!isLoggedin" ion-item menuClose class="text-1x"   (click)="openPage(appMenuItems[2].component)">
+              <ion-icon item-left [name]="appMenuItems[2].icon" color="primary"></ion-icon>
+              <span ion-text color="primary">{{appMenuItems[2].title}}</span>
+            </button>
+            <button [disabled]="!isLoggedin" ion-item menuClose class="text-1x"   (click)="openPage(appMenuItems[3].component)">
+                <ion-icon item-left [name]="appMenuItems[3].icon" color="primary"></ion-icon>
+                <span ion-text color="primary">{{appMenuItems[3].title}}</span>
+              </button>
+              <button ion-item menuClose class="text-1x"   (click)="openPage(appMenuItems[5].component)">
+                  <ion-icon item-left [name]="appMenuItems[5].icon" color="primary"></ion-icon>
+                  <span ion-text color="primary">{{appMenuItems[5].title}}</span>
+                </button>
+                <button ion-item menuClose class="text-1x"   (click)="openPage(appMenuItems[6].component)">
+                    <ion-icon item-left [name]="appMenuItems[6].icon" color="primary"></ion-icon>
+                    <span ion-text color="primary">{{appMenuItems[6].title}}</span>
+                  </button>
+        
+      <button *ngIf="!isLoggedin" ion-button   (click)="login()">
+   
+          Login to participate
+        </button>
     </ion-list>
   </ion-content>
 

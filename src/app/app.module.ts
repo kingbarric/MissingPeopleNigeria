@@ -38,6 +38,7 @@ import { HelpPage } from "../pages/help/help";
 import { ProfilePage } from "../pages/profile/profile";
 import { PostDetailsPage } from "../pages/post-details/post-details";
 import { FormsModule } from '@angular/forms';
+import {ReportCommentPage} from "../pages/report-comment/report-comment";
 
 // import services
 // end import services
@@ -64,6 +65,7 @@ import { FormsModule } from '@angular/forms';
     SearchLocationPage,
     TripDetailPage,
     TripsPage,
+    ReportCommentPage,
     ProfilePage
   ],
   imports: [
@@ -101,6 +103,7 @@ import { FormsModule } from '@angular/forms';
     SearchLocationPage,
     TripDetailPage,
     TripsPage,
+    ReportCommentPage,
     ProfilePage
   ],
   providers: [

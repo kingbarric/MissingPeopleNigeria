@@ -54,8 +54,9 @@ export class CrudService {
   }
 
   constructor(private http: HttpClient,public toastController: ToastController) {
-   // this.REST_API_URL = 'http://localhost:8080/api/';
-    this.REST_API_URL = 'http://172.26.50.46:8080/api/';
+  // this.REST_API_URL = 'http://localhost:8084/api/';
+   // this.REST_API_URL = 'http://40.86.95.117:8084/api/';
+    this.REST_API_URL = 'http://localhost:8084/api/';
     this.emp_msg = { message: 'No data available' };
   }
 

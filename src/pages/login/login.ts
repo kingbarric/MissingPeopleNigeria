@@ -48,7 +48,7 @@ export class LoginPage {
 
      }
    },err=>{
-     this.crudService.toast('Network issue, check IP')
+     this.crudService.toast(err);
    })
   }
 
@@ -88,6 +88,10 @@ export class LoginPage {
       ]
     });
     forgot.present();
+  }
+
+  homePage(){
+    this.nav.setRoot(HomePage);
   }
 
 }

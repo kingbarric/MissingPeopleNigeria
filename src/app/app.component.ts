@@ -30,13 +30,13 @@ export interface MenuItem {
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = HomePage;
 
   appMenuItems: Array<MenuItem>;
   fullname;
   citizen;
   img_url='/assets/img/avatar.png';
-
+  isLoggedin: boolean;
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
@@ -62,7 +62,12 @@ export class MyApp {
       // user and time are the same arguments passed in `events.publish(user, time)`
       console.log('Welcome', citizen, 'at', time);
       this.citizen = citizen;
+      this.isLoggedin =true;
       this.getProfileImage(citizen.id);
+    });
+
+    this.storage.get('email').then((e) => {
+    
     });
   }
 
@@ -71,7 +76,8 @@ export class MyApp {
       console.log('citi', e);
       this.citizen = JSON.parse(e.citizen);
      // console.log(this.citizen);
-     
+     this.isLoggedin = e!=null;
+    
     });
    
   }
@@ -98,16 +104,31 @@ export class MyApp {
     });
   }
 
+  // openPage(page) {
+  //   // Reset the content nav to have just this page
+  //   // we wouldn't want the back button to show in this scenario
+  //   this.nav.setRoot(page.component);
+  // }
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(page);
   }
 
   logout() {
-    this.nav.setRoot(LoginPage);
+    this.storage.set('email',null);
+    this.storage.set('citizen',null);
+    this.isLoggedin =false;
+    this.storage.clear().then((e:any)=>{
+       this.nav.setRoot(LoginPage);
+    })
+   
   }
   editProfile(){
     this.nav.push(ProfilePage);
+  }
+
+  login() {
+    this.nav.setRoot(LoginPage);
   }
 }

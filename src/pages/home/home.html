@@ -19,8 +19,10 @@
 </ion-header>
 
 <ion-content padding class="animated fadeIn common-bg">
+  
+    <ion-spinner name="crescent" *ngIf="loading" class="el-align-center"></ion-spinner>
 
-    <ion-card *ngFor="let report of reports">
+    <ion-card *ngFor="let report of reports" (click)="gotoComment(report)">
 
         <ion-item>
           <ion-avatar item-start>
@@ -41,7 +43,7 @@
         <ion-row>
         
           <ion-col>
-            <button ion-button icon-start clear small>
+            <button ion-button icon-start clear small >
               <ion-icon name="text"></ion-icon>
               <div>{{report.comment}}</div>
             </button>

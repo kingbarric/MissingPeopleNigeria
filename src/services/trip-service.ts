@@ -21,6 +21,7 @@ export class TripService {
     }
     return null;
   }
+  
 
   remove(item) {
     this.trips.splice(this.trips.indexOf(item), 1);

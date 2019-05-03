@@ -5,9 +5,9 @@ import { Observable } from 'rxjs/Observable';
 import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
-export class WeatherProvider {
+export class WeatherProvider { 
   apiKey = '1e4a0bdb251c64e4';
-  url: string;
+  url: string; 
   queryNotFound: string;
 
   constructor(public http: HttpClient) {
