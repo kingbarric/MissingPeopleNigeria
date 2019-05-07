@@ -1,5 +1,5 @@
 <!--
-  Generated template for the SearchByPhotoPage page.
+  Generated template for the ReportPersonPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -10,12 +10,89 @@
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Search People By Photo</ion-title>
+    <ion-title>Search By Facial Recognition</ion-title>
 </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
+    <div padding-horizontal text-center class="animated fadeInDown">
+        <!-- <div class="logo"></div> -->
+        <h2 ion-text class="text-primary">
+          <strong>Report a missing</strong> Person
+        </h2>
+      </div>
+  
+      <!-- Login form -->
+      <form class="list-form" [formGroup]="form" >
+        
+   
+     
+  
+      <div>
+          <img src="{{imageUrl}}" *ngIf="imageUrl != null">
+          <img src="/assets/img/avatar.png" *ngIf="imageUrl==null">
+           <ion-row>
+                <ion-col>
+                    <button  (click)="takePhoto()" ion-button block color="dark" tappable >
+                        <ion-icon  name="camera"></ion-icon>
+                        </button>
+                  </ion-col>
+                  <ion-col align-self-center text-center>
+                      <button  (click)="browsePhoto()" ion-button block color="dark" tappable >
+                          <ion-icon  name="folder-open"></ion-icon>
+                          </button>
+                  </ion-col>
+                </ion-row>
+        <button ion-button icon-start block color="dark" tappable (click)="search()" >
+          <ion-icon name="log-in"></ion-icon>
+          Search
+        </button>
+  
+     
+  
+      </div>
+    </form>
+  
+      <!-- Other links -->
+      <div text-center margin-top>
+        <span ion-text color="secondary" tappable (click)="cancel()">Cancel<strong></strong></span>
+      </div>
+  
+      <ion-spinner name="crescent" *ngIf="loading" class="el-align-center"></ion-spinner>
 
+      <ion-card *ngFor="let report of reports" (click)="gotoComment(report)">
+  
+          <ion-item>
+            <ion-avatar item-start>
+            <img [src]="sanitize(report.userImage)"  onerror="this.src='assets/img/avatar.png'"> 
+             
+            </ion-avatar>
+            {{report.caption}}
+            <h2>{{report.username}}</h2>
+            <p>   {{report.postTitle}}</p>
+          </ion-item>
+        
+          <img [src]="sanitize(report.postImage)" onerror="this.src='assets/img/avatar.png'"> 
+        
+          <ion-card-content>
+            <p>{{report.content}}</p>
+          </ion-card-content>
+        
+          <ion-row>
+          
+            <ion-col>
+              <button ion-button icon-start clear small >
+                <ion-icon name="text"></ion-icon>
+                <div>{{report.comment}}</div>
+              </button>
+            </ion-col>
+            <ion-col align-self-center text-center>
+              <ion-note>
+                {{report.date | amTimeAgo}} 
+              </ion-note>
+            </ion-col>
+          </ion-row>
+        
+        </ion-card>
 </ion-content>

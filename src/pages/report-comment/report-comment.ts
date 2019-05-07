@@ -6,6 +6,7 @@ import { Storage } from "@ionic/storage";
 import { ActivityService } from "../../services/activity-service";
 import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { CrudService } from "../../services/CrudService";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: 'page-report-comment',
@@ -20,12 +21,14 @@ export class ReportCommentPage {
   // number of children
   public children = 0;
   public post:any;
-  userId;
+  userId=0;
   loading =false;
   comments=[];
 
   constructor(public nav: NavController, public tripService: TripService,
-     public act: ActivityService, public storage : Storage, public event : Events, public crudService: CrudService) {
+     public act: ActivityService, public storage : Storage, public event : Events,
+     public sanitizer: DomSanitizer,
+      public crudService: CrudService) {
     // set sample data
     this.trip = tripService.getItem(1);
     this.post = act.getData();
@@ -51,6 +54,10 @@ export class ReportCommentPage {
     console.log('item: ',this.post);
     console.log('TRIP: ',this.trip);
   }
+
+  sanitize(img){
+    return this.sanitizer.bypassSecurityTrustUrl('data:image/png;base64,'+img);
+   }
 
   // minus adult when click minus button
   minusAdult() {
@@ -97,8 +104,11 @@ this.loading =false;
   callFromStorage(){
     this.storage.get('citizen').then((e) => {
       console.log('citi', e);
-    const c = JSON.parse(e);
+      if(e){
+        const c = JSON.parse(e);
       this.userId = c.id;
+      }
+    
     });
   }
 

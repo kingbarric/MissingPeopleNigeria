@@ -14,7 +14,7 @@
   <!--slides-->
   <ion-slides class="to-top" pager>
     <ion-slide >
-      <img src="data:image/png;base64,{{post.postImage}}"> 
+      <img [src]="sanitize(post.postImage)" onerror="this.src='assets/img/avatar.png'"> 
     </ion-slide>
   </ion-slides>
 
@@ -56,10 +56,10 @@
           </ion-label>
           <ion-input type="text" formControlName="caption"></ion-input>
         </ion-item>
-        <div padding class="form-bottom">
+        <div padding class="form-bottom" *ngIf="userId !=0">
           <!--       <span ion-text color="dark" class="bold">{{ adults }} Adults</span> -->
                 <!--booking button-->
-                <button ion-button class="pull-right" color="secondary" tappable (click)="comment()">Comment
+                <button  ion-button class="pull-right" color="secondary" tappable (click)="comment()">Comment
                 </button>
                 <div class="clear"></div>
               </div>

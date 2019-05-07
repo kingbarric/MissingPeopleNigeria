@@ -34,7 +34,13 @@ export class HomePage {
   }
 
   constructor(private storage: Storage, public nav: NavController, public popoverCtrl: PopoverController, 
-    private crudService: CrudService,  public sanitizer: DomSanitizer, public event :Events, private act: ActivityService) {
+    private crudService: CrudService,  public sanitizer: DomSanitizer,
+     public event :Events, private act: ActivityService) {
+     //  this.sanitizer.bypassSecurityTrustResourceUrl
+  }
+
+  sanitize(img){
+   return this.sanitizer.bypassSecurityTrustUrl('data:image/png;base64,'+img);
   }
 
   ionViewWillEnter() {

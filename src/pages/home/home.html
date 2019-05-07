@@ -26,15 +26,15 @@
 
         <ion-item>
           <ion-avatar item-start>
-          <img src="data:image/png;base64,{{report.userImage}}"> 
+          <img [src]="sanitize(report.userImage)"  onerror="this.src='assets/img/avatar.png'"> 
            
           </ion-avatar>
           {{report.caption}}
           <h2>{{report.username}}</h2>
-          <p> {{report.date | amTimeAgo}}</p>
+          <p>   {{report.postTitle}}</p>
         </ion-item>
       
-        <img src="data:image/png;base64,{{report.postImage}}"> 
+        <img [src]="sanitize(report.postImage)" onerror="this.src='assets/img/avatar.png'"> 
       
         <ion-card-content>
           <p>{{report.content}}</p>
@@ -50,7 +50,7 @@
           </ion-col>
           <ion-col align-self-center text-center>
             <ion-note>
-            {{report.postTitle}}
+              {{report.date | amTimeAgo}} 
             </ion-note>
           </ion-col>
         </ion-row>
